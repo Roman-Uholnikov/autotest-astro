@@ -73,7 +73,7 @@ public class Base {
                     displayed = true;
                     return;
                 }
-                Thread.sleep(DEFAULT_WAIT_TIME_SEC * 1000);
+                Thread.sleep(1 * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
