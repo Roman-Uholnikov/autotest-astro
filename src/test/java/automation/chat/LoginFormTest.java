@@ -1,6 +1,9 @@
-package automation;
+package automation.chat;
 
+import automation.Constants;
+import automation.TestHelper;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,15 +18,21 @@ public class LoginFormTest extends TestHelper {
      */
     @Test
     public void testSubscriptionWithWrongEmail() {
+        WebDriver expertWindow = getNewWindow();
+        WebDriver clientWindow = getNewWindow();
         loginSite(Constants.Environments.PROD_SITE_URL,
                 Constants.Users.EXPERT_LOGIN,
-                Constants.Users.EXPERT_PASSWORD);
+                Constants.Users.EXPERT_PASSWORD,
+                expertWindow);
 
-        //Checking
+        clientWindow.get(Constants.Environments.PROD_SITE_URL);
+
         //Проверяем что мы залогиниись как Юля (имя не пустое)
-        assertTrue(findElementByXPath("//span[@class='dropdown-current__value']") != null);
+        assertTrue(findElementByXPath("//span[@class='dropdown-current__value']", expertWindow) != null);
 
-        logout(Constants.Environments.PROD_SITE_URL);
+//        logout(Constants.Environments.PROD_SITE_URL, expertWindow);
+
+
     }
 
     /**

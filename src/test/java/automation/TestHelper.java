@@ -1,5 +1,7 @@
 package automation;
 
+import org.openqa.selenium.WebDriver;
+
 /**
  * Class contains business level operation.
  *
@@ -14,16 +16,17 @@ public class TestHelper extends Base {
      * @param login
      * @param password
      */
-    public void loginSite(String siteUrl, String login, String password){
-        openUrl(siteUrl);
+    public void loginSite(String siteUrl, String login, String password, WebDriver window){
 
-        findElementByXPath("//div[@class='header__top']//a[@href='#login']").click();
-        pauseUntilDisplayed("//form[@id='login_form']//input[@id='user_models_User_email']");
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_email']").sendKeys(Constants.Users.EXPERT_LOGIN);
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_password']").sendKeys(Constants.Users.EXPERT_PASSWORD);
-        findElementByXPath("//*[@id='loginButton']").click();
+        window.get(siteUrl);
 
-        logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']").getText());
+        findElementByXPath("//div[@class='header__top']//a[@href='#login']", window).click();
+        pauseUntilDisplayed("//form[@id='login_form']//input[@id='user_models_User_email']", window);
+        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_email']", window).sendKeys(Constants.Users.EXPERT_LOGIN);
+        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_password']", window).sendKeys(Constants.Users.EXPERT_PASSWORD);
+        findElementByXPath("//*[@id='loginButton']", window).click();
+
+        logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
     }
 
     /**
@@ -31,8 +34,8 @@ public class TestHelper extends Base {
      * 
      * @param siteUrl
      */
-    public void logout(String siteUrl){
-        openUrl(siteUrl + "logout");
+    public void logout(String siteUrl, WebDriver window){
+        window.get(siteUrl + "logout");
     }
 
 }
