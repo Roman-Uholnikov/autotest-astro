@@ -1,5 +1,6 @@
 package automation;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -21,9 +22,9 @@ public class TestHelper extends Base {
         window.get(siteUrl);
 
         findElementByXPath("//div[@class='header__top']//a[@href='#login']", window).click();
-        pauseUntilDisplayed("//form[@id='login_form']//input[@id='user_models_User_email']", window);
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_email']", window).sendKeys(Constants.Users.EXPERT_LOGIN);
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_password']", window).sendKeys(Constants.Users.EXPERT_PASSWORD);
+        pauseUntilDisplayed(By.xpath("//form[@id='login_form']//input[@id='user_models_User_email']"), window);
+        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_email']", window).sendKeys(Constants.EXPERT_LOGIN);
+        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_password']", window).sendKeys(Constants.EXPERT_PASSWORD);
         findElementByXPath("//*[@id='loginButton']", window).click();
 
         logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());

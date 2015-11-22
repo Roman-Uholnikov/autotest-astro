@@ -30,7 +30,7 @@ public class Base {
     @After
     public void tearDown() {
         drivers.forEach(p -> {
-            p.get(Constants.Environments.PROD_SITE_URL + "/logout");
+            p.get(Constants.SITE_URL + "/logout");
             p.quit();
         });
     }
@@ -41,20 +41,24 @@ public class Base {
      * @param seconds amount of seconds to wait element
      * @param locator XPath of element which is expected
      */
-    public void pauseUntilFound(String locator, long seconds, WebDriver window) {
+    public void pauseUntilFoundByXPath(String locator, long seconds, WebDriver window) {
         new WebDriverWait(window, seconds).until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+    }
+
+
+    public void pauseUntilFound(By locator, long seconds, WebDriver window) {
+        new WebDriverWait(window, seconds).until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     /**
      * Wait until element will be available, but no more {@link Base#DEFAULT_WAIT_TIME_SEC} seconds.
      *
-     * @param locator XPath of element which is expected
      */
-    public void pauseUntilDisplayed(String locator, WebDriver window) {
+    public void pauseUntilDisplayed(By locator, WebDriver window) {
         boolean displayed = false;
         while (!displayed) {
             try {
-                WebElement element = findElementByXPath(locator, window);
+                WebElement element = findElement(locator, window);
                 if (element.isDisplayed()) {
                     displayed = true;
                     return;
@@ -84,8 +88,19 @@ public class Base {
      * @throws org.openqa.selenium.NoSuchElementException
      */
     public WebElement findElementByXPath(String xpath, WebDriver window) {
-        pauseUntilFound(xpath, DEFAULT_WAIT_TIME_SEC, window);
+        pauseUntilFoundByXPath(xpath, DEFAULT_WAIT_TIME_SEC, window);
         return window.findElement(By.xpath(xpath));
+    }
+
+    /**
+     * Find element by XPath, wait no more than {@link Base#DEFAULT_WAIT_TIME_SEC}
+     *
+     * @return WebElement
+     * @throws org.openqa.selenium.NoSuchElementException
+     */
+    public WebElement findElement(By locator, WebDriver window) {
+        pauseUntilFound(locator, DEFAULT_WAIT_TIME_SEC, window);
+        return window.findElement(locator);
     }
 
     /**
@@ -96,7 +111,7 @@ public class Base {
      * @throws org.openqa.selenium.NoSuchElementException
      */
     public WebElement findElementByXPath(String xpath, int seconds, WebDriver window) {
-        pauseUntilFound(xpath, seconds, window);
+        pauseUntilFoundByXPath(xpath, seconds, window);
         return window.findElement(By.xpath(xpath));
     }
 
@@ -110,7 +125,7 @@ public class Base {
     public boolean isElementExistByXPath(String xpath, int seconds, WebDriver window) {
         WebElement element = null;
         try {
-            pauseUntilFound(xpath, seconds, window);
+            pauseUntilFoundByXPath(xpath, seconds, window);
             element = window.findElement(By.xpath(xpath));
         } catch (NoSuchElementException ex) {
             logger.warning(MessageFormat.format("Can not get element by xpath {0}, {1}", xpath, ex.getMessage()));

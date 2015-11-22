@@ -13,31 +13,30 @@ import static org.junit.Assert.assertTrue;
 public class LoginFormTest extends TestHelper {
 
     /**
-     * Tests login form (first case)
-     * <p>Prerequisites: user with {@link automation.Constants.Users#EXPERT_LOGIN} does not exist in the system<p/>
+     *
      */
     @Test
     public void testSubscriptionWithWrongEmail() {
         WebDriver expertWindow = getNewWindow();
         WebDriver clientWindow = getNewWindow();
-        loginSite(Constants.Environments.PROD_SITE_URL,
-                Constants.Users.EXPERT_LOGIN,
-                Constants.Users.EXPERT_PASSWORD,
+        loginSite(Constants.SITE_URL,
+                Constants.EXPERT_LOGIN,
+                Constants.EXPERT_PASSWORD,
                 expertWindow);
 
-        clientWindow.get(Constants.Environments.PROD_SITE_URL);
+        clientWindow.get(Constants.SITE_URL);
 
         //Проверяем что мы залогиниись как Юля (имя не пустое)
         assertTrue(findElementByXPath("//span[@class='dropdown-current__value']", expertWindow) != null);
 
-//        logout(Constants.Environments.PROD_SITE_URL, expertWindow);
+//        logout(Constants.SITE_URL, expertWindow);
 
 
     }
 
     /**
      * Tests login form (first case)
-     * <p>Prerequisites: user with {@link automation.Constants.Users#EXPERT_LOGIN} does not exist in the system<p/>
+     *
      */
     @Test
     public void testSubscriptionWithoutEmail() {
