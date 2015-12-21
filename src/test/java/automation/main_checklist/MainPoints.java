@@ -14,7 +14,7 @@ public class MainPoints extends TestHelper {
      * проверить открытие страницки эксперта на главной
      */
     @Test
-    public void VerificationForNeedLoginFronBigExpertCard() {
+    public void VerificationForNeedLoginFromBigExpertCard() {
         WebDriver window = getNewWindow();
         window.get(Constants.SITE_URL);
 
