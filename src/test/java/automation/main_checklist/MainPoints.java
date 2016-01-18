@@ -20,8 +20,8 @@ public class MainPoints extends TestHelper {
 
         //найти эксперта со статусом Доступен сейчас
         //pauseUntilDisplayed(By.className("card__status-inner"),window);
-        if (window.findElements(By.className("card__image card__image_round")).size() > 0) {
-            window.findElements(By.className("card__image card__image_round")).get(0).click();
+        if (window.findElements(By.className("card__status-inner")).size() > 0) {
+            window.findElements(By.xpath("//*[@class='card__title-inner']")).get(0).click();
         }
 
         //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
@@ -34,6 +34,17 @@ public class MainPoints extends TestHelper {
         //подождать пока появиться форма логина
         pauseUntilDisplayed(By.xpath("//*[@class='login']"), window);
 
+        //ввести логин, пароль клиента, кликнуть войти
+        window.findElement((By.id("user_models_User_phone"))).sendKeys("0932649105");
+        window.findElement((By.id("user_models_User_password"))).sendKeys("123456");
+        window.findElement((By.id("loginButton"))).click();
 
+        //подождать пока появиться залогиненный клиент (сессия)
+        pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
     }
+
+/**
+ * проверить открытие страницки эксперта на главной
+ */
+
 }
