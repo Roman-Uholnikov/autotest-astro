@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class MainPoints extends TestHelper {
     /**
-     * проверить открытие страницки эксперта на главной
+     * проверить открытие страницки эксперта на главной, и Вход при нажатии Позвонить
      */
     @Test
     public void VerificationForNeedLoginFromBigExpertCard() {
@@ -39,7 +39,7 @@ public class MainPoints extends TestHelper {
         window.findElement((By.id("user_models_User_password"))).sendKeys("123456");
         window.findElement((By.id("loginButton"))).click();
 
-        //подождать пока появиться залогиненный клиент (сессия)
+        //подождать пока появиться попап запрос на аудио консультацию
         pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
     }
 
