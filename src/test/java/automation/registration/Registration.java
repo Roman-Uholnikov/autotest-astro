@@ -20,7 +20,22 @@ public class Registration extends TestHelper {
     public void testRegistrationUserFromMainPage() {
         WebDriver window = getNewWindow();
         window.get(Constants.SITE_URL);
+
         window.findElement(By.xpath("//a[contains(.,'Регистрация')]")).click();
+        pauseUntilDisplayed(By.xpath(".//*[@id='registration']//*[@id='user_models_User_phone']"),window);
+        window.findElement((By.xpath(".//*[@id='registration']//*[@id='user_models_User_phone']"))).sendKeys(Constants.REG_LOGIN);
+        window.findElement((By.xpath(".//*[@id='registration']//*[@id='user_models_User_password']"))).sendKeys(Constants.REG_PASSWORD);
+        window.findElement((By.xpath(".//*[@id='registration']//*[@id='user_models_User_rulesAccepted']"))).click();
+        pauseUntilDisplayed(By.id("registerButton"),window);
+        window.findElement(By.id("registerButton")).click();
+
+        // вывод информации в консоли выполнения теста
+        logger.info("Введите смс из телефона");
+
+        //pauseUntilDisplayed подождать пока окно для ввода смс появилось
+        pauseUntilDisplayed(By.xpath("//*[@id='user_modules_registration_models_User_sms_access_code']"),window);
+
+
         pauseUntilDisplayed(By.xpath(".//div[@class='registration__body']//*[@id='user_modules_registration_models_User_phone']"),window);
         window.findElement((By.xpath(".//div[@class='registration__body']//*[@id='user_modules_registration_models_User_phone']"))).sendKeys(Constants.USER_LOGIN);
         window.findElement((By.xpath(".//div[@class='registration__body']//*[@id='user_modules_registration_models_User_password']"))).sendKeys(Constants.USER_PASSWORD);

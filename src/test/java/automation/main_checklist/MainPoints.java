@@ -13,6 +13,7 @@ public class MainPoints extends TestHelper {
     /**
      * проверить открытие страницки эксперта на главной, и Вход при нажатии Позвонить
      */
+
     @Test
     public void VerificationForNeedLoginFromBigExpertCard() {
         WebDriver window = getNewWindow();
@@ -39,7 +40,7 @@ public class MainPoints extends TestHelper {
         window.findElement((By.id("user_models_User_password"))).sendKeys("123456");
         window.findElement((By.id("loginButton"))).click();
 
-        //подождать пока появиться попап запрос на аудио консультацию
+        //подождать пока появиться попап запрос на аудио консультацию или попап предупреждение о платной консультации
         pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
     }
 
