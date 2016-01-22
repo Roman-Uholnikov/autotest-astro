@@ -13,7 +13,7 @@ import automation.TestHelper;
  * Created by Julia on 22-Nov-15.
  */
 public class Registration extends TestHelper {
-    /**
+    /**регистрация пользователя Антона
      *
      */
 
@@ -41,10 +41,13 @@ public class Registration extends TestHelper {
         //pauseUntilDisplayed подождать пока окно для ввода смс появилось
         pauseUntilDisplayed(By.xpath("//*[@id='user_modules_registration_models_User_sms_access_code']"), window);
 
-
+        //ввести код из смс
         window.findElement((By.xpath("//*[@id='user_modules_registration_models_User_sms_access_code']"))).sendKeys("SMS ???????");
-        //нажать подтвердить регистрацию
-        //проверить что мы видим следующий шаг регистрации
+
+        //нажать кнопку Зарегистрироваться
+        // далее появляется попап thankyoupage, нажать кнопку Перейти в личный кабинет
+        //вести имя ТестАнтон в ЛК
+        //нажать Сохранить данные в ЛК
     }
 
 
