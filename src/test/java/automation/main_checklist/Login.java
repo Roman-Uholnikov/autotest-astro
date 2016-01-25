@@ -35,8 +35,8 @@ public class Login extends TestHelper {
         pauseUntilDisplayed(By.xpath("//*[@class='login']"), window);
 
         //ввести логин, пароль клиента, кликнуть Войти
-        window.findElement((By.id("user_models_User_phone"))).sendKeys("0932649105");
-        window.findElement((By.id("user_models_User_password"))).sendKeys("123456");
+        window.findElement((By.id("user_models_User_phone"))).sendKeys(Constants.USER_LOGIN);
+        window.findElement((By.id("user_models_User_password"))).sendKeys(Constants.USER_PASSWORD);
         window.findElement((By.id("loginButton"))).click();
 
         //подождать пока появиться попап запрос на аудио консультацию или попап предупреждение о платной консультации

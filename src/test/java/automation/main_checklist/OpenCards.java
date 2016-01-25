@@ -17,7 +17,7 @@ public class OpenCards extends TestHelper {
      */
 
     @Test
-    public void OpenCardExpert() {
+    public void OpenCardOnlineExpert() {
         WebDriver window = getNewWindow();
         window.get(Constants.SITE_URL);
 
@@ -30,23 +30,40 @@ public class OpenCards extends TestHelper {
         //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
         pauseUntilDisplayed(By.xpath("//*[@class='product__title']"), window);
 
-        //найти эксперта со статусом Нет в сети и открыть большую карточку
+    }
 
-        // выбрать тематику - открыть эксперта, выбрать специализацию, проверить пересечение
+    @Test
+    public void OpenCardOfflineExpert() {
+        WebDriver window = getNewWindow();
+        window.get(Constants.SITE_URL);
 
-        //открыть карту услуги с главной
+        //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)
 
-        //выбрать тематику для услуги - открыть карту услуги
+        if (window.findElements(By.className("btn btn-green btn-alpha")).size() > 0) {
+            window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
+        }
 
-        //выбрать тематику и открыть статью
-
-        // зайти в каталог гороскопов с главной
-
-        // открыть гороскоп из каталога
-
-        //переключить гороскоп в блоке Гороскоп для другиз ЗЗ
-
-
+        //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
+        pauseUntilDisplayed(By.xpath("//*[@class='product__title']"), window);
 
     }
+
+
+    // выбрать тематику - открыть эксперта, выбрать специализацию, проверить пересечение
+
+
+    //открыть карту услуги с главной
+
+    //выбрать тематику для услуги - открыть карту услуги
+
+    //выбрать тематику и открыть статью
+
+    // зайти в каталог гороскопов с главной
+
+    // открыть гороскоп из каталога
+
+    //переключить гороскоп в блоке Гороскоп для другиз ЗЗ
+
+
 }
+
