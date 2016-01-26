@@ -93,6 +93,21 @@ public class Base {
     }
 
     /**
+     * Find element by XPath, wait no more than specified time
+     *
+     * @param id
+     * @return WebElement
+     * @throws org.openqa.selenium.NoSuchElementException
+     */
+    public WebElement findElementById(String id, WebDriver window) {
+        //пауза НАПИСАТЬ
+        return window.findElement(By.id(id));
+    }
+
+
+
+
+    /**
      * Find element by XPath, wait no more than {@link Base#DEFAULT_WAIT_TIME_SEC}
      *
      * @return WebElement

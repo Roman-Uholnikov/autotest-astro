@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class LoginFormTest extends TestHelper {
 
     /**
-     *
+     *переписать, так как логин другой
      */
     @Test
     public void testSubscriptionWithWrongEmail() {

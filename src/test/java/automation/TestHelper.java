@@ -8,7 +8,36 @@ import org.openqa.selenium.WebDriver;
  *
  * Created by Julia on 21-Nov-15.
  */
-public class TestHelper extends Base {
+
+    public class TestHelper extends Base {
+
+
+    /**
+     * проверить следующий метод - Логин с карточки Эксперта через кнопку Уведомить о доступности
+     */
+
+    public void loginSiteUser(String login, String password, WebDriver window){
+
+        //window.get(siteUrl);
+
+        //findElementByXPath("//a[contains(.,'Вход')]", window).click();
+
+        //подождать пока появиться форма логина
+        //pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
+        //ввести логин, пароль клиента, кликнуть Войти
+        findElementById("user_models_User_phone", window).sendKeys(Constants.USER_LOGIN);
+        findElementById("user_models_User_password", window).sendKeys(Constants.USER_PASSWORD);
+
+        window.findElement((By.id("loginButton"))).click();
+
+        //logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
+    }
+
+
+
+
+
+
 
     /**
      *  Login into site.
@@ -17,6 +46,8 @@ public class TestHelper extends Base {
      * @param login
      * @param password
      */
+
+    //этот логин используется в классе чат, необходимо переписать
     public void loginSite(String siteUrl, String login, String password, WebDriver window){
 
         window.get(siteUrl);
@@ -29,6 +60,9 @@ public class TestHelper extends Base {
 
         logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
     }
+
+
+
 
     /**
      * Force server to delete the session.

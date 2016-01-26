@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class Login extends TestHelper {
     /**
-     * проверить логин юзера с большой карты Эксперта через кнопку Позвонить
+     * проверить логин юзера и попап с большой карты Эксперта через кнопку Позвонить
      */
 
     @Test
@@ -31,13 +31,11 @@ public class Login extends TestHelper {
         //кликнуть на кнопку Позвонить
         window.findElement((By.xpath("//*[@class='ga_btn btn btn-green btn-lg product__order-button']"))).click();
 
-        //подождать пока появиться форма логина
-        pauseUntilDisplayed(By.xpath("//*[@class='login']"), window);
 
-        //ввести логин, пароль клиента, кликнуть Войти
-        window.findElement((By.id("user_models_User_phone"))).sendKeys(Constants.USER_LOGIN);
-        window.findElement((By.id("user_models_User_password"))).sendKeys(Constants.USER_PASSWORD);
-        window.findElement((By.id("loginButton"))).click();
+
+        // вставить тест хелпер ЛогинЮзерСайт
+
+
 
         //подождать пока появиться попап запрос на аудио консультацию или попап предупреждение о платной консультации
         pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
@@ -45,6 +43,14 @@ public class Login extends TestHelper {
         //логаут
 
     }
+
+    //проверить логин юзера и попап с большой карты Эксперта через кнопку ЧАТ
+
+
+
+    //проверить логин юзера и попап с главной через кнопку Позвонить
+
+    //проверить логин юзера и попап с главной через кнопку ЧАТ
 
 /**
  *
