@@ -31,10 +31,40 @@ public class OpenCards extends TestHelper {
 
         //проверить нид_логин - кликнуть Позвонить
 
-    }
+
+        WebElement freeAudioButton = null;
+        WebElement nonFreeAudioButton = null;
+        if (window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).size() > 0){
+            nonFreeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
+        }
+
+        if (window.findElements(By.xpath(".//*[@id='FreeAudioBtn']")).size() > 0){
+            freeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
+        }
+
+
+        if (freeAudioButton == null && nonFeeAudioButton == null){
+        //не найдена не та не та кнопка. Выкидываем ошибку
+        fail("нету кнопки позвонить");}
+
+          else {
+             if(freeAudioButton != null){
+            freeAudioButton.click();
+                 } else {
+            nonFreeAudioButton.click();
+              }
+
+        }
+
+    //pauseUntilDisplayed подождать пока появилось окно Вход
+    pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
 
 
     }
+}
+
+
+
     // выбрать тематику - открыть эксперта, выбрать специализацию, проверить пересечение на главной и в каталоге
 
 
