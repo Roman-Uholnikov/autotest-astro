@@ -5,6 +5,9 @@ import automation.TestHelper;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.fail;
 
 /**
  * Created by Julia on 22.01.2016.
@@ -34,25 +37,24 @@ public class OpenCards extends TestHelper {
 
         WebElement freeAudioButton = null;
         WebElement nonFreeAudioButton = null;
-        if (window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).size() > 0){
+        if (window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).size() > 0) {
             nonFreeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
         }
 
-        if (window.findElements(By.xpath(".//*[@id='FreeAudioBtn']")).size() > 0){
+        if (window.findElements(By.xpath(".//*[@id='FreeAudioBtn']")).size() > 0) {
             freeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
         }
 
 
-        if (freeAudioButton == null && nonFeeAudioButton == null){
-        //не найдена не та не та кнопка. Выкидываем ошибку
-        fail("нету кнопки позвонить");}
-
-          else {
-             if(freeAudioButton != null){
-            freeAudioButton.click();
-                 } else {
-            nonFreeAudioButton.click();
-              }
+        if (freeAudioButton == null && nonFreeAudioButton == null) {
+            //не найдена не та не та кнопка. Выкидываем ошибку
+            fail("нет кнопки позвонить");
+        } else {
+            if (freeAudioButton != null) {
+                freeAudioButton.click();
+            } else {
+                nonFreeAudioButton.click();
+            }
 
         }
 
