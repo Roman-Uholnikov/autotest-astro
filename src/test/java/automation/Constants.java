@@ -8,7 +8,7 @@ package automation;
 public class Constants {
 
 
-    public static String SITE_URL = "https://astrolog.net.ua/";
+    public static String SITE_URL = "https://astro.club/";
     public static String EXPERT_LOGIN = "380953814324";
     public static String EXPERT_PASSWORD = "123456";
 

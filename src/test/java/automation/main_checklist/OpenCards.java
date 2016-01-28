@@ -41,8 +41,8 @@ public class OpenCards extends TestHelper {
             nonFreeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
         }
 
-        if (window.findElements(By.xpath(".//*[@id='FreeAudioBtn']")).size() > 0) {
-            freeAudioButton = window.findElements(By.xpath(".//*[@id='nonFreeAudioBtn']")).get(0);
+        if (window.findElements(By.xpath(".//*[@id='freeAudioBtn']")).size() > 0) {
+            freeAudioButton = window.findElements(By.xpath(".//*[@id='freeAudioBtn']")).get(0);
         }
 
 
