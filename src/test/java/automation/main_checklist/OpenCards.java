@@ -15,7 +15,7 @@ import static org.junit.Assert.fail;
 public class OpenCards extends TestHelper {
 
 
-     //проверить открытие карт эксперта онлайн
+     //проверить открытие карты эксперта онлайн, нажатие Позвонить, проверка нид_логин
 
 
     @Test
@@ -61,13 +61,56 @@ public class OpenCards extends TestHelper {
     //pauseUntilDisplayed подождать пока появилось окно Вход
     pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
 
+    }
+
+
+
+    // выбрать тематику а главной - открыть эксперта, выбрать у него тематику из блока консультарую, в открывшемся каталоге открыть эксперта ОФФлайн
+
+
+    @Test
+    public void OpenCardWithDirection() {
+        WebDriver window = getNewWindow();
+        window.get(Constants.SITE_URL);
+
+        //выбрать Тематику на главной - открыть карту Эксперта
+
+        window.findElement(By.xpath("//a[contains(.,'Работа и карьера')]")).click();
+        window.findElement(By.xpath("//*[@class='card__title-inner']")).click();
+
+        //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
+        pauseUntilDisplayed(By.xpath("//*[@class='product__title']"), window);
+
+        //кликнуть тематику из блока Консультирую
+        window.findElement(By.xpath("//*[@class='page-menu__list-link']")).click();
+
+        //pauseUntilDisplayed подождать пока появится каталог экспертов с дропдауном Все специализации
+        pauseUntilDisplayed(By.xpath(".//*[@id='select2-specSelect-container']"), window);
+
+       //выбрать тематику  Судьба и будущее
+
+        window.get(Constants.SITE_URL + "/experts/all/destiny");
+
+
+        //открыть карту Оффлайн эксперта ИЛИ ЗАНЯТ НА ЛИНИИ предусмотреть
+        if (window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).size() > 0) {
+            window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
+        }
+
+
+        window.get(Constants.SITE_URL + "/experts/all");
+
+
+        //pauseUntilDisplayed подождать пока появилось окно Вход
+        pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
+
 
     }
 }
 
 
 
-    // выбрать тематику - открыть эксперта, выбрать специализацию, проверить пересечение на главной и в каталоге
+
 
 
     //открыть карту услуги с главной
