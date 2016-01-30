@@ -20,10 +20,7 @@ public class Login extends TestHelper {
         window.get(Constants.SITE_URL);
 
         //найти эксперта со статусом Доступен сейчас и открыть большую карточку
-
-        if (window.findElements(By.className("card__status-inner")).size() > 0) {
-            window.findElements(By.xpath("//*[@class='card__title-inner']")).get(0).click();
-        }
+        clickOnAvailableExpert(window);
 
         //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
         pauseUntilDisplayed(By.xpath("//*[@class='product__title']"), window);
@@ -31,16 +28,15 @@ public class Login extends TestHelper {
         //кликнуть на кнопку Позвонить
         window.findElement((By.xpath("//*[@class='ga_btn btn btn-green btn-lg product__order-button']"))).click();
 
-
-
         // вставить тест хелпер ЛогинЮзерСайт
-
-
+        loginSiteUser(Constants.USER_LOGIN,Constants.USER_PASSWORD,window);
 
         //подождать пока появиться попап запрос на аудио консультацию или попап предупреждение о платной консультации
-        pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
+//        pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
+        //todo что тут проверять то?
 
         //логаут
+        logout(Constants.SITE_URL, window);
 
     }
 

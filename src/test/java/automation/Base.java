@@ -42,12 +42,12 @@ public class Base {
      * @param locator XPath of element which is expected
      */
     public void pauseUntilFoundByXPath(String locator, long seconds, WebDriver window) {
-        new WebDriverWait(window, seconds).until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+        new WebDriverWait(window, seconds).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
     }
 
 
     public void pauseUntilFound(By locator, long seconds, WebDriver window) {
-        new WebDriverWait(window, seconds).until(ExpectedConditions.presenceOfElementLocated(locator));
+        new WebDriverWait(window, seconds).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     /**
@@ -100,7 +100,8 @@ public class Base {
      * @throws org.openqa.selenium.NoSuchElementException
      */
     public WebElement findElementById(String id, WebDriver window) {
-        //пауза НАПИСАТЬ
+        //пауза
+        new WebDriverWait(window, DEFAULT_WAIT_TIME_SEC).until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
         return window.findElement(By.id(id));
     }
 

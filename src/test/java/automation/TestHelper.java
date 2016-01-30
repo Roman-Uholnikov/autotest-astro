@@ -17,13 +17,6 @@ public class TestHelper extends Base {
      */
 
     public void loginSiteUser(String login, String password, WebDriver window) {
-
-        //window.get(siteUrl);
-
-        //findElementByXPath("//a[contains(.,'Вход')]", window).click();
-
-        //подождать пока появиться форма логина
-        //pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
         //ввести логин, пароль клиента, кликнуть Войти
         findElementById("user_models_User_phone", window).sendKeys(Constants.USER_LOGIN);
         findElementById("user_models_User_password", window).sendKeys(Constants.USER_PASSWORD);
@@ -36,13 +29,12 @@ public class TestHelper extends Base {
 
     /**
      * Login into site.
+     * //todo этот логин используется в классе чат, необходимо переписать
      *
      * @param siteUrl  here should be PROD url or TEST url
      * @param login
      * @param password
      */
-
-    //этот логин используется в классе чат, необходимо переписать
     public void loginSite(String siteUrl, String login, String password, WebDriver window) {
 
         window.get(siteUrl);
