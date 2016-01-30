@@ -7,6 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.fail;
 
 /**
@@ -15,9 +19,9 @@ import static org.junit.Assert.fail;
 public class OpenCards extends TestHelper {
 
 
-     //проверить открытие карты эксперта онлайн, нажатие Позвонить, проверка нид_логин
-
-
+    /**
+     * проверить открытие карты эксперта онлайн, нажатие Позвонить, проверка нид_логин
+     */
     @Test
     public void OpenCardOnlineExpert() {
         WebDriver window = getNewWindow();
@@ -58,59 +62,56 @@ public class OpenCards extends TestHelper {
 
         }
 
-    //pauseUntilDisplayed подождать пока появилось окно Вход
-    pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
-
-    }
-
-
-
-    // выбрать тематику а главной - открыть эксперта, выбрать у него тематику из блока консультарую, в открывшемся каталоге открыть эксперта ОФФлайн
-
-
-    @Test
-    public void OpenCardWithDirection() {
-        WebDriver window = getNewWindow();
-        window.get(Constants.SITE_URL);
-
-        //выбрать Тематику на главной - открыть карту Эксперта
-
-        window.findElement(By.xpath("//a[contains(.,'Работа и карьера')]")).click();
-        window.findElement(By.xpath("//*[@class='card__title-inner']")).click();
-
-        //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
-        pauseUntilDisplayed(By.xpath("//*[@class='product__title']"), window);
-
-        //кликнуть тематику из блока Консультирую
-        window.findElement(By.xpath("//*[@class='page-menu__list-link']")).click();
-
-        //pauseUntilDisplayed подождать пока появится каталог экспертов с дропдауном Все специализации
-        pauseUntilDisplayed(By.xpath(".//*[@id='select2-specSelect-container']"), window);
-
-       //выбрать тематику  Судьба и будущее
-
-        window.get(Constants.SITE_URL + "/experts/all/destiny");
-
-
-        //открыть карту Оффлайн эксперта ИЛИ ЗАНЯТ НА ЛИНИИ предусмотреть
-        if (window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).size() > 0) {
-            window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
-        }
-
-
-        window.get(Constants.SITE_URL + "/experts/all");
-
-
         //pauseUntilDisplayed подождать пока появилось окно Вход
         pauseUntilDisplayed(By.xpath(".//*[@id='login']//*[@id='user_models_User_phone']"), window);
 
+    }
+
+
+
+    /**
+     * выбрать тематику а главной - открыть эксперта, выбрать у него тематику из блока консультарую, в открывшемся каталоге открыть эксперта ОФФлайн
+     */
+    @Test
+    public void OpenCardWithDirection() {
+        WebDriver window = getNewWindow();
+        List<String> thematics = Arrays.asList("family-and-kids", "love-and-relationships", "destiny", "vip", "job-and-career"); //todo дописать все отсальные
+        List<String> specialities = Arrays.asList("astrology", "extrasensory", "divination", "numerology", "healing");
+        List<String> thematicAndSpecialities = new ArrayList<>();
+        for(String thematic: thematics) {
+            thematicAndSpecialities.add("all/" + thematic);
+        }
+        thematicAndSpecialities.addAll(specialities);
+
+        for (String speciality : specialities) {
+            for (String thematic : thematics) {
+                thematicAndSpecialities.add(speciality + "/" + thematic);
+            }
+        }
+
+        //проверка. Для каждой тематики и специализации
+        for(String thematicOrSpeciality: thematicAndSpecialities){
+            logger.info("Проверяем доступность экспертов настранице: " + Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
+            //открываем адрес
+            window.get(Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
+            //найти эксперта со статусом Доступен сейчас и открыть большую карточку
+            boolean foundAvailableExpert = clickOnAvailableExpert(window);
+            window.get(Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
+            //найти эксперта со статусом НеДоступен сейчас и открыть большую карточку
+            boolean foundNotAvailableExpert = clickOnNotAvailableExpert(window);
+            window.get(Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
+            //найти эксперта со статусом Занят на линии и кликнуть по кнопке Уведомить о доступности
+            boolean foundBusyExpert = clickOnBusyExpert(window);
+            if(!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
+                fail("Не один эксперт не был найден на странице:" + Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
+            }
+        }
+
 
     }
+
+
 }
-
-
-
-
 
 
     //открыть карту услуги с главной
