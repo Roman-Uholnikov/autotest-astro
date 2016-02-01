@@ -67,8 +67,10 @@ public class TestHelper extends Base {
      * @return true - эксперт был найден, либо false - если эксперт не был найден
      */
     protected boolean clickOnAvailableExpert(WebDriver window) {
-        if (window.findElements(By.xpath("//div[@class='card__status status-available']/following-sibling::a[@class='card__image card__image_round']")).size() > 0) {
-            window.findElements(By.xpath("//div[@class='card__status status-available']/following-sibling::a[@class='card__image card__image_round']")).get(0).click();
+        final String xpathExpression = "//div[@class='card__status status-available']/following-sibling::a[@class='card__image card__image_round']";
+        pause(1);
+        if (window.findElements(By.xpath(xpathExpression)).size() > 0) {
+            window.findElements(By.xpath(xpathExpression)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
             pauseUntilFound(By.xpath("//*[@class='product__title']"), DEFAULT_WAIT_TIME_SEC, window);
             logger.info("Найден Доступный эксперт :" + window.findElement(By.xpath("//*[@class='product__title']")).getText());
@@ -88,8 +90,10 @@ public class TestHelper extends Base {
      */
     protected boolean clickOnNotAvailableExpert(WebDriver window) {
         //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)
-        if (window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).size() > 0) {
-            window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
+        final String xpathExpression = "//*[@class='btn btn-green btn-alpha']";
+        pause(1);
+        if (window.findElements(By.xpath(xpathExpression)).size() > 0) {
+            window.findElements(By.xpath(xpathExpression)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
             pauseUntilFound(By.xpath("//*[@class='product__title']"), DEFAULT_WAIT_TIME_SEC, window);
             logger.info("Найден Не Доступный эксперт :" + window.findElement(By.xpath("//*[@class='product__title']")).getText());
@@ -109,6 +113,7 @@ public class TestHelper extends Base {
      */
     protected boolean clickOnBusyExpert(WebDriver window) {
         String xpathForBusyExpert = "//div[@class='card__status status-busy' and child::span[contains(.,'Занят на линии')]]/following-sibling::a[@class='card__image card__image_round']";
+        pause(1);
         if (window.findElements(By.xpath(xpathForBusyExpert)).size() > 0) {
             window.findElements(By.xpath(xpathForBusyExpert)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
