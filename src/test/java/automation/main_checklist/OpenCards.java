@@ -126,7 +126,7 @@ public class OpenCards extends TestHelper {
 
         //проверка для каждой тематики
         for(String thematicUrl: thematicsExperts){
-            logger.info("Проверяем доступность экспертов на странице: " + Constants.SITE_URL + thematics);
+            logger.info("Проверяем доступность экспертов на странице: " + Constants.SITE_URL + thematicUrl);
             //открываем адрес
             window.get(Constants.SITE_URL + thematicUrl);
             //найти эксперта со статусом Доступен сейчас и открыть большую карточку
@@ -138,7 +138,7 @@ public class OpenCards extends TestHelper {
             //найти эксперта со статусом Занят на линии и кликнуть по кнопке Уведомить о доступности
             boolean foundBusyExpert = clickOnBusyExpert(window);
             if(!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
-                fail("Не один эксперт не был найден на странице:" + Constants.SITE_URL + thematics);
+                fail("Не один эксперт не был найден на странице:" + Constants.SITE_URL + thematicUrl);
             }
         }
 

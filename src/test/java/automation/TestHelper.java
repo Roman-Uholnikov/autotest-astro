@@ -74,7 +74,7 @@ public class TestHelper extends Base {
             logger.info("Найден Доступный эксперт :" + window.findElement(By.xpath("//*[@class='product__title']")).getText());
             return true;
         }
-        logger.info("Не найдено ниодного Доступного Эксперта");
+        logger.info("Не найдено ни одного Доступного Эксперта");
         return false;
     }
 
@@ -95,7 +95,7 @@ public class TestHelper extends Base {
             logger.info("Найден Не Доступный эксперт :" + window.findElement(By.xpath("//*[@class='product__title']")).getText());
             return true;
         }
-        logger.info("Не найдено ниодного Недоступного Эксперта");
+        logger.info("Не найдено ни одного Недоступного Эксперта");
         return false;
     }
 
@@ -116,7 +116,7 @@ public class TestHelper extends Base {
             logger.info("Найден Эксперт На Линии :" + window.findElement(By.xpath("//*[@class='product__title']")).getText());
             return true;
         }
-        logger.info("Не найдено ниодного Эксперт На Линии");
+        logger.info("Не найдено ни одного Эксперт На Линии");
         return false;
     }
 }
