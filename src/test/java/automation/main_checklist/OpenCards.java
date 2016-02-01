@@ -118,10 +118,10 @@ public class OpenCards extends TestHelper {
     public void OpenCardWithDirectionOnMainPage() {
         WebDriver window = getNewWindow();
         List<String> thematics = Arrays.asList("love_and_relationships", "destiny", "Job_and_career"); //todo дописать все отсальные
-
+        List<String> thematicsExperts = new ArrayList<>();
 
         for(String thematic: thematics) {
-            thematics.add("/#direction-" + thematic);
+            thematicsExperts.add("/#direction-" + thematic);
         }
 
         //проверка для каждой тематики
