@@ -117,7 +117,7 @@ public class OpenCards extends TestHelper {
     @Test
     public void OpenCardWithDirectionOnMainPage() {
         WebDriver window = getNewWindow();
-        List<String> thematics = Arrays.asList("love_and_relationships", "destiny", "Job_and_career"); //todo дописать все отсальные
+        List<String> thematics = Arrays.asList("love_and_relationships", "vip"); //todo дописать все отсальные
         List<String> thematicsExperts = new ArrayList<>();
 
         for(String thematic: thematics) {
