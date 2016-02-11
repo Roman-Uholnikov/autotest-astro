@@ -63,11 +63,9 @@ public class OpenCards extends TestHelper {
 
     }
 
-
-
     /**
      * проверка тематик и специализаций в каталоге Экспертов:
-     *перебор всех тематик с открытием онлайнЭксперта, Занятого Эксперта и Нет на линии Эксперта;
+     * перебор всех тематик с открытием онлайнЭксперта, Занятого Эксперта и Нет на линии Эксперта;
      * таким же образом перебор всех специализаций;
      * перебор пересечения тематик и специализаций
      */
@@ -77,7 +75,7 @@ public class OpenCards extends TestHelper {
         List<String> thematics = Arrays.asList("family-and-kids", "love-and-relationships", "destiny", "vip", "job-and-career"); //todo дописать все отсальные
         List<String> specialities = Arrays.asList("astrology", "extrasensory", "divination", "numerology", "healing");
         List<String> thematicAndSpecialities = new ArrayList<>();
-        for(String thematic: thematics) {
+        for (String thematic : thematics) {
             thematicAndSpecialities.add("all/" + thematic);
         }
         thematicAndSpecialities.addAll(specialities);
@@ -89,7 +87,7 @@ public class OpenCards extends TestHelper {
         }
 
         //проверка. Для каждой тематики и специализации
-        for(String thematicOrSpeciality: thematicAndSpecialities){
+        for (String thematicOrSpeciality : thematicAndSpecialities) {
             logger.info("Проверяем доступность экспертов настранице: " + Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
             //открываем адрес
             window.get(Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
@@ -101,18 +99,16 @@ public class OpenCards extends TestHelper {
             window.get(Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
             //найти эксперта со статусом Занят на линии и кликнуть по кнопке Уведомить о доступности
             boolean foundBusyExpert = clickOnBusyExpert(window);
-            if(!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
+            if (!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
                 fail("Не один эксперт не был найден на странице:" + Constants.SITE_URL + "/experts/" + thematicOrSpeciality);
             }
         }
 
     }
 
-
     /**
      * проверка тематик на главной:
      * перебор всех тематик с открытием онлайнЭксперта, Занятого Эксперта и Нет на линии Эксперта;
-     *
      */
     @Test
     public void OpenCardWithDirectionOnMainPage() {
@@ -120,12 +116,12 @@ public class OpenCards extends TestHelper {
         List<String> thematics = Arrays.asList("love_and_relationships", "vip"); //todo дописать все отсальные
         List<String> thematicsExperts = new ArrayList<>();
 
-        for(String thematic: thematics) {
+        for (String thematic : thematics) {
             thematicsExperts.add("/#direction-" + thematic);
         }
 
         //проверка для каждой тематики
-        for(String thematicUrl: thematicsExperts){
+        for (String thematicUrl : thematicsExperts) {
             logger.info("Проверяем доступность экспертов на странице: " + Constants.SITE_URL + thematicUrl);
             //открываем адрес
             window.get(Constants.SITE_URL + thematicUrl);
@@ -141,7 +137,7 @@ public class OpenCards extends TestHelper {
             //найти эксперта со статусом Занят на линии и кликнуть по кнопке Уведомить о доступности
             boolean foundBusyExpert = clickOnBusyExpert(window);
 
-            if(!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
+            if (!(foundAvailableExpert | foundBusyExpert | foundNotAvailableExpert)) {
                 fail("Не один эксперт не был найден на странице:" + Constants.SITE_URL + thematicUrl);
             }
         }
@@ -149,7 +145,30 @@ public class OpenCards extends TestHelper {
     }
 
 
+    //открыть карту услуги с главной //// TODO: доделать
 
+    //выбрать тематику для услуги - открыть карту услуги
+
+    @Test
+    public void OpenServiceCardOnCatalog() {
+        WebDriver window = getNewWindow();
+
+
+        //открыть каталог услуг выбрав тематику Семья и дети
+        window.get(Constants.SITE_URL + "/service/family-and-kids");
+        pause(3);
+        // открыть карточку услуги кликнув на заголовок страницы
+        window.findElement(By.xpath(".//*[@class='card__title-inner']")).click();
+        pauseUntilDisplayed(By.xpath(".//*[@class='product__description']"), window);
+
+        //открыть каталог услуг выбрав тематику Судьба и будущее
+        window.get(Constants.SITE_URL + "/service/destiny");
+        pause(3);
+        // открыть карточку услуги
+        window.findElement(By.xpath(".//*[@class='card__image']")).click();
+        pauseUntilDisplayed(By.xpath(".//*[@class='product__description']"), window);
+
+    }
 
 }
 
@@ -159,9 +178,6 @@ public class OpenCards extends TestHelper {
 
 
 
-    //открыть карту услуги с главной
-
-    //выбрать тематику для услуги - открыть карту услуги
 
     //выбрать тематику и открыть статью
 

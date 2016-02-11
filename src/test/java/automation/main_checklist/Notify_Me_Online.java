@@ -18,7 +18,7 @@ public class Notify_Me_Online extends TestHelper {
         WebDriver window = getNewWindow();
         window.get(Constants.SITE_URL);
 
-        //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)
+        //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)//// TODO: 11.02.2016  
 
         if (window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).size() > 0) {
             window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
