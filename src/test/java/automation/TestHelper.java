@@ -68,7 +68,7 @@ public class TestHelper extends Base {
      */
     protected boolean clickOnAvailableExpert(WebDriver window) {
         final String xpathExpression = "//div[@class='card__status status-available']/following-sibling::a[@class='card__image card__image_round']";
-        pause(1);
+        pause(3);
         if (window.findElements(By.xpath(xpathExpression)).size() > 0) {
             window.findElements(By.xpath(xpathExpression)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
@@ -91,7 +91,7 @@ public class TestHelper extends Base {
     protected boolean clickOnNotAvailableExpert(WebDriver window) {
         //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)
         final String xpathExpression = "//*[@class='btn btn-green btn-alpha']";
-        pause(1);
+        pause(3);
         if (window.findElements(By.xpath(xpathExpression)).size() > 0) {
             window.findElements(By.xpath(xpathExpression)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
@@ -113,7 +113,7 @@ public class TestHelper extends Base {
      */
     protected boolean clickOnBusyExpert(WebDriver window) {
         String xpathForBusyExpert = "//div[@class='card__status status-busy' and child::span[contains(.,'Занят на линии')]]/following-sibling::a[@class='card__image card__image_round']";
-        pause(1);
+        pause(3);
         if (window.findElements(By.xpath(xpathForBusyExpert)).size() > 0) {
             window.findElements(By.xpath(xpathForBusyExpert)).get(0).click();
             //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
