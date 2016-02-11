@@ -129,12 +129,15 @@ public class OpenCards extends TestHelper {
             logger.info("Проверяем доступность экспертов на странице: " + Constants.SITE_URL + thematicUrl);
             //открываем адрес
             window.get(Constants.SITE_URL + thematicUrl);
+            pause(3);
             //найти эксперта со статусом Доступен сейчас и открыть большую карточку
             boolean foundAvailableExpert = clickOnAvailableExpert(window);
             window.get(Constants.SITE_URL + thematicUrl);
+            pause(3);
             //найти эксперта со статусом НеДоступен сейчас и открыть большую карточку
             boolean foundNotAvailableExpert = clickOnNotAvailableExpert(window);
             window.get(Constants.SITE_URL + thematicUrl);
+            pause(3);
             //найти эксперта со статусом Занят на линии и кликнуть по кнопке Уведомить о доступности
             boolean foundBusyExpert = clickOnBusyExpert(window);
 
