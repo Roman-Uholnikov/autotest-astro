@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * Class contains business level operation.
@@ -22,8 +23,13 @@ public class TestHelper extends Base {
 
     public void loginSiteUser(String login, String password, WebDriver window) {
         //ввести логин, пароль клиента, кликнуть Войти
-        findElementById("user_models_User_phone", window).sendKeys(Constants.USER_LOGIN);
-        findElementById("user_models_User_password", window).sendKeys(Constants.USER_PASSWORD);
+        pause(1);
+        //Я не знаю почему, походу гдето яваскрпит реагирует, но нужно перваый раз чтото ввсети.
+        getFirstDisplayedWebElement(window, "//*[@id='user_models_User_password']").sendKeys(password);
+        pause(1);
+        getFirstDisplayedWebElement(window, "//*[@id='user_models_User_phone']").sendKeys(login);
+        getFirstDisplayedWebElement(window, "//*[@id='user_models_User_password']").clear();
+        getFirstDisplayedWebElement(window, "//*[@id='user_models_User_password']").sendKeys(password);
         pause(3);
         window.findElement((By.id("loginButton"))).click();
 
@@ -148,6 +154,10 @@ public class TestHelper extends Base {
 
         if(visibleWebElements.size() == allElements.size() && allElements.size()!=1){
             logger.warning("Все элементы видимы. Возвращаем первый. Это может быть ошибкой, будте внимательны");
+        }
+
+        if(allElements.size()==1){
+            logger.warning("Не найден ни один видимый елемент");
         }
 
         return visibleWebElements.get(0);
