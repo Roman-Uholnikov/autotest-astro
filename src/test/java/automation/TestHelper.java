@@ -24,7 +24,7 @@ public class TestHelper extends Base {
         //ввести логин, пароль клиента, кликнуть Войти
         findElementById("user_models_User_phone", window).sendKeys(Constants.USER_LOGIN);
         findElementById("user_models_User_password", window).sendKeys(Constants.USER_PASSWORD);
-
+        pause(3);
         window.findElement((By.id("loginButton"))).click();
 
         //logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
