@@ -2,13 +2,13 @@ package automation.main_checklist;
 
 import automation.Constants;
 import automation.TestHelper;
-import com.sun.java.swing.plaf.windows.resources.windows;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import sun.plugin2.os.windows.Windows;
+import org.openqa.selenium.WebElement;
 
-import java.awt.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -32,9 +32,8 @@ public class Execute_service extends TestHelper {
         loginSiteUser(Constants.USER_LOGIN,Constants.USER_PASSWORD,window);
 
         pauseUntilDisplayed(By.xpath(".//*[@id='expert-request-service_price']"),window);
-        findElementById(".//*[@id='comment']",window).sendKeys("Тестовая проверка заказа услуги у Эксперта Юли");
-        window.findElements(By.xpath("//fieldset//div[@class='form-group']/button[@type='submit']")).stream()
-                .filter(expertElement -> expertElement.isDisplayed()).collect(Collectors.toList()).get(0).click();
+        getFirstDisplayedWebElement(window,".//*[@id='comment']").sendKeys("Тестовая проверка заказа услуги у Эксперта Юли");
+        getFirstDisplayedWebElement(window, "//fieldset//div[@class='form-group']/button[@type='submit']").click();
 
         // заказать услугу у эксперта
         //пополнить счет - редирект

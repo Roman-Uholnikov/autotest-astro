@@ -134,4 +134,22 @@ public class TestHelper extends Base {
         logger.info("Не найдено ни одного Эксперт На Линии");
         return false;
     }
+
+    /**
+     * Возвращает первый ОТОБРАЖАЕМЫЙ елемент, надйеный по XPath.
+     * @param window - окно в котором мы ищем.
+     * @param xpathExpression
+     * @return
+     */
+    protected WebElement getFirstDisplayedWebElement(final WebDriver window, final String xpathExpression) {
+        final List<WebElement> allElements = window.findElements(By.xpath(xpathExpression));
+        final List<WebElement> visibleWebElements = allElements.stream()
+                .filter(expertElement -> expertElement.isDisplayed()).collect(Collectors.toList());
+
+        if(visibleWebElements.size() == allElements.size() && allElements.size()!=1){
+            logger.warning("Все элементы видимы. Возвращаем первый. Это может быть ошибкой, будте внимательны");
+        }
+
+        return visibleWebElements.get(0);
+    }
 }
