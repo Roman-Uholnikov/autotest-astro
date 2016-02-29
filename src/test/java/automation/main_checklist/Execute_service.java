@@ -15,17 +15,16 @@ import java.util.stream.Collectors;
  * Created by Julia on 26.01.2016.
  */
 public class Execute_service extends TestHelper {
-
+    /**
+     * перед выполнением теста проверить: 1) все данные клиента для выполн услуги заполнены, 2)на балансе достаточно средств для заказа
+     */
 
     @Test
     public void Order_service() {
         WebDriver window = getNewWindow();
-        window.get(Constants.SITE_URL);
+        window.get(Constants.SITE_URL + "/expert/yuli");
 
-        //открыть карточку тестового эксперта Юли
-        window.get("https://astro.club/expert/yuli");
-
-        //кликнуть Заказать в карточке Услуги
+                //кликнуть Заказать в карточке Услуги
         findElementByXPath(".//*[@class='btn btn-green product__order-button ga_btn']",window).click();
 
         //войти под Клиентом
@@ -33,7 +32,7 @@ public class Execute_service extends TestHelper {
 
         pauseUntilDisplayed(By.xpath(".//*[@id='expert-request-service_price']"),window);
         getFirstDisplayedWebElement(window,".//*[@id='comment']").sendKeys("Тестовая проверка заказа услуги у Эксперта Юли");
-        getFirstDisplayedWebElement(window, "//fieldset//div[@class='form-group']/button[@type='submit']").click();
+        getFirstDisplayedWebElement(window,".//*[@id='expert-request-service_form_']//fieldset//div[@class='form-group']/button[@type='submit']").click();
 
         // заказать услугу у эксперта
         //пополнить счет - редирект
