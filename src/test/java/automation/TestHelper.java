@@ -47,7 +47,7 @@ public class TestHelper extends Base {
      */
     public void loginSite(String siteUrl, String login, String password, WebDriver window) {
 
-        window.get(siteUrl);
+        window.get(Constants.SITE_URL);
 
         findElementByXPath("//div[@class='header__top']//a[@href='#login']", window).click();
         pauseUntilDisplayed(By.xpath("//form[@id='login_form']//input[@id='user_models_User_email']"), window);
@@ -65,8 +65,14 @@ public class TestHelper extends Base {
      * @param siteUrl
      */
     public void logout(String siteUrl, WebDriver window) {
-        window.get(siteUrl + "logout");
+        window.get(Constants.SITE_URL + "/logout");
+
     }
+
+
+       // findElementByXPath("//div[@class='dropdown-current']/span[@class='dropdown-current__value']",window).click();
+
+
 
     /**
      * Найти эксперта со статусом Доступен сейчас и открыть большую карточку.
