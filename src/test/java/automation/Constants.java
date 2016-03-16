@@ -9,7 +9,7 @@ public class Constants {
 
 
     public static String SITE_URL = "https://astrolog.net.ua";
-    public static String EXPERT_LOGIN = "380953814324";
+    public static String EXPERT_LOGIN = "0953814324";
     public static String EXPERT_PASSWORD = "123456";
 
     public static String REG_LOGIN = "0504440170";

@@ -42,6 +42,7 @@ public class Execute_service extends TestHelper {
         //войти экспертом, выполнить услугу
 
         loginSite(Constants.SITE_URL,Constants.EXPERT_LOGIN,Constants.EXPERT_PASSWORD,window);
+        pause(3);
         window.get(Constants.SITE_URL + "/account/orders");
 
         getFirstDisplayedWebElement(window,".//*[@class='custom-table__field status']/a[@class='btn btn-green btn-wide custom-table__btn']").click();
