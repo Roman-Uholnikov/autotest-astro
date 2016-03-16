@@ -18,7 +18,8 @@ public class TestHelper extends Base {
 
 
     /**
-     * проверить следующий метод - Логин с карточки Эксперта через кнопку Уведомить о доступности
+     * логин (авторизация пользователя) в уже отрытое и активное окно авторизации.
+     * Подразумевается что оккно ввода и пароля уже было вызвано и ожидает ввода.
      */
 
     public void loginSiteUser(String login, String password, WebDriver window) {
@@ -38,7 +39,7 @@ public class TestHelper extends Base {
 
 
     /**
-     * Login into site.
+     * открывает указаный адрес, и пытаеться нацти кнопку "логин", и залогиниться
      * //todo этот логин используется в классе чат, необходимо переписать
      *
      * @param siteUrl  here should be PROD url or TEST url
@@ -47,15 +48,12 @@ public class TestHelper extends Base {
      */
     public void loginSite(String siteUrl, String login, String password, WebDriver window) {
 
-        window.get(Constants.SITE_URL);
+        window.get(siteUrl);
 
         findElementByXPath("//div[@class='header__top']//a[@href='#login']", window).click();
         pauseUntilDisplayed(By.xpath("//form[@id='login_form']//input[@id='user_models_User_email']"), window);
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_email']", window).sendKeys(Constants.EXPERT_LOGIN);
-        findElementByXPath("//form[@id='login_form']//input[@id='user_models_User_password']", window).sendKeys(Constants.EXPERT_PASSWORD);
-        findElementByXPath("//*[@id='loginButton']", window).click();
 
-        logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
+        loginSiteUser(login, password, window);
     }
 
 
