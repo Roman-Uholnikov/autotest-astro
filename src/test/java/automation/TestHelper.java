@@ -18,13 +18,13 @@ public class TestHelper extends Base {
 
     /**
      * логин (авторизация пользователя) в уже отрытое и активное окно авторизации.
-     * Подразумевается что оккно ввода и пароля уже было вызвано и ожидает ввода.
+     * Подразумевается что окно ввода логина и пароля уже было вызвано и ожидает ввода.
      */
 
     public void loginSiteUser(String login, String password, WebDriver window) {
         //ввести логин, пароль клиента, кликнуть Войти
         pause(1);
-        //Я не знаю почему, походу гдето яваскрпит реагирует, но нужно перваый раз чтото ввсети.
+        //Я не знаю почему, возможно гдето яваскрпит реагирует, но нужно первый раз чтото ввести.
         getFirstDisplayedWebElement(window, "//*[@id='user_models_User_password']").sendKeys(password);
         pause(1);
         getFirstDisplayedWebElement(window, "//*[@id='user_models_User_phone']").sendKeys(login);
@@ -33,13 +33,12 @@ public class TestHelper extends Base {
         pause(3);
         window.findElement((By.id("loginButton"))).click();
 
-        //logger.info("Loggined user name: " + findElementByXPath("//span[@class='dropdown-current__value']", window).getText());
     }
 
 
     /**
-     * открывает указаный адрес, и пытаеться нацти кнопку "логин", и залогиниться
-     * //todo этот логин используется в классе чат, необходимо переписать
+     * открывает указаный адрес, и пытаеться найти кнопку "Вход" и залогиниться
+     * //
      *
      * @param siteUrl  here should be PROD url or TEST url
      * @param login
