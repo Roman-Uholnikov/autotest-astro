@@ -1,12 +1,11 @@
 package automation;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class contains business level operation.
@@ -156,12 +155,18 @@ public class TestHelper extends Base {
         final List<WebElement> visibleWebElements = allElements.stream()
                 .filter(expertElement -> expertElement.isDisplayed()).collect(Collectors.toList());
 
+        if(allElements.size()==0){
+            logger.warning("Не найден ни один елемент (отображаемый или не отображаемый)");
+            return null;
+        }
+
         if(visibleWebElements.size() == allElements.size() && allElements.size()!=1){
             logger.warning("Все элементы видимы. Возвращаем первый. Это может быть ошибкой, будте внимательны");
         }
 
-        if(allElements.size()==1){
-            logger.warning("Не найден ни один видимый елемент");
+        if(visibleWebElements.size()==0){
+            logger.warning("Не найден ни один видимый елемент, берем тот который не видимый");
+            allElements.get(0);
         }
 
         return visibleWebElements.get(0);
