@@ -50,7 +50,7 @@ public class TestHelper extends Base {
         window.get(siteUrl);
 
         findElementByXPath("//div[@class='header__top']//a[@href='#login']", window).click();
-        pauseUntilDisplayed(By.xpath("//form[@id='login_form']//input[@id='user_models_User_email']"), window);
+        pauseUntilDisplayed(By.xpath(".//*[@id='login']/div[@class='modal-dialog']"), window);
 
         loginSiteUser(login, password, window);
     }
