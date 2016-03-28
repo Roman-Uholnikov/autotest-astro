@@ -15,6 +15,35 @@ import java.util.stream.Collectors;
 
 public class TestHelper extends Base {
 
+    /**
+     * логин для админпанели сайта: открывает админку, вводит логин, пароль
+     * @param siteUrl  here should be PROD url or TEST url
+     * @param login
+     * @param password
+     */
+
+    public void loginAdminSite(String siteUrl, String login, String password, WebDriver window) {
+        //ввести логин, пароль клиента, кликнуть Вход
+        pause(1);
+        window.get(siteUrl);
+        //Я не знаю почему, возможно гдето яваскрпит реагирует, но нужно первый раз чтото ввести.
+       // getFirstDisplayedWebElement(window, "//*[@id='user_models_User_password']").sendKeys(password);
+        //pause(1);
+        getFirstDisplayedWebElement(window, ".//*[@id='admin_models_User_email']").sendKeys(login);
+        getFirstDisplayedWebElement(window, ".//*[@id='admin_models_User_password']").sendKeys(password);
+        pause(3);
+        window.findElement((By.xpath(".//*[@id='login-form-submit-button']"))).click();
+
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * логин (авторизация пользователя) в уже отрытое и активное окно авторизации.

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 public class Execute_service extends TestHelper {
     /**
-     * перед выполнением теста проверить: 1) все данные клиента для выполн услуги заполнены, 2)на балансе достаточно средств для заказа
+     * перед выполнением теста проверить: 1) все данные клиента (фио, имя, др клиента) для выполн услуги заполнены, 2)на балансе достаточно средств для заказа
      */
 
     @Test
@@ -63,6 +63,15 @@ public class Execute_service extends TestHelper {
         findElementById("sendBtn",window).click();
         pauseUntilDisplayed(By.xpath(".//*[@id='btnOk']"),window);
         findElement(By.xpath(".//*[@id='btnOk']"),window).click();
+        logout(Constants.SITE_URL,window);
+
+        loginAdminSite(Constants.SITE_ADMIN_URL,Constants.ADMIN_LOGIN,Constants.ADMIN_PASSWORD,window);
+
+
+        .//*[@id='yw1']/li/a[@class='dropdown-toggle']/span[@class='menu-text']
+        .//*[@class='dropdown-toggle']/span[@class='menu-text']
+
+        https://admin.astrolog.net.ua/service/admin/service/showdoneservice
 
 
         // заказать услугу у эксперта
