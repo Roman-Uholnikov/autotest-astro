@@ -66,13 +66,13 @@ public class Execute_service extends TestHelper {
         logout(Constants.SITE_URL,window);
 
         loginAdminSite(Constants.SITE_ADMIN_URL,Constants.ADMIN_LOGIN,Constants.ADMIN_PASSWORD,window);
+        pause(2);
 
 
+       // .//*[@id='yw1']/li/a[@class='dropdown-toggle']/span[@class='menu-text']
+      //  .//*[@class='dropdown-toggle']/span[@class='menu-text']
 
-        .//*[@id='yw1']/li/a[@class='dropdown-toggle']/span[@class='menu-text']
-        .//*[@class='dropdown-toggle']/span[@class='menu-text']
-
-        https://admin.astrolog.net.ua/service/admin/service/showdoneservice
+      //  https://admin.astrolog.net.ua/service/admin/service/showdoneservice
 
 
         // заказать услугу у эксперта
