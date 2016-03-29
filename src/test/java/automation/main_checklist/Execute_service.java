@@ -3,6 +3,7 @@ package automation.main_checklist;
 import automation.Constants;
 import automation.TestHelper;
 
+import com.sun.org.apache.bcel.internal.generic.GOTO;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -68,23 +69,27 @@ public class Execute_service extends TestHelper {
         loginAdminSite(Constants.SITE_ADMIN_URL,Constants.ADMIN_LOGIN,Constants.ADMIN_PASSWORD,window);
         pause(2);
 
+        //зайти на вкладку Модерация - Выполненные услуги
 
        // .//*[@id='yw1']/li/a[@class='dropdown-toggle']/span[@class='menu-text']
       //  .//*[@class='dropdown-toggle']/span[@class='menu-text']
 
       //  https://admin.astrolog.net.ua/service/admin/service/showdoneservice
 
+        //найти нужную услугу по Названию и Эксперту
 
-        // заказать услугу у эксперта
-        //пополнить счет - редирект
-        //заказ
-        //выйти из пользователя
-        //зайти под экспертом
-        //выполнить услугу
-        //выйти из эксперта
-        //зайти под модератором
-        //пропустить услугу
-        //зайти под клиентом
+
+        // нажать зеленую галочку approve - услуга отправится клиенту
+        // закрыть админку https://admin.astro.club/admin/default/logout
+
+        //зайти под клиентом на сайт
+        loginSite(Constants.SITE_URL,Constants.USER_LOGIN,Constants.USER_PASSWORD,window);
+
+        //перейти по ссылке https://astro.club/user/orders;
+
+
+
+
         //скачать пдф с услугой, ПРОВЕРИТЬ текст
     }
 }
