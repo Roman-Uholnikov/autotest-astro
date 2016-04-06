@@ -33,7 +33,7 @@ public class Login extends TestHelper {
 
         //подождать пока появиться попап запрос на аудио консультацию или попап предупреждение о платной консультации
 //        pauseUntilDisplayed(By.xpath("//*[@class='dropdown-current__value']"), window);
-        //todo что тут проверять то?
+        //todo проверить что появился ордер или предупреждение о платной консультации
 
         //логаут
         logout(Constants.SITE_URL, window);

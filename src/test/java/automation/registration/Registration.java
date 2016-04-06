@@ -13,7 +13,7 @@ import automation.TestHelper;
  * Created by Julia on 22-Nov-15.
  */
 public class Registration extends TestHelper {
-    /**регистрация пользователя Антона
+    /**регистрация пользователя Антона, перед запуском теста необходимо удалить Антона номер, если был ранее зарегистрирован
      *
      */
 
