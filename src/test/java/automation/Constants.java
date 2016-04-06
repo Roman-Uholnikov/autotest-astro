@@ -11,7 +11,7 @@ public class Constants {
     public static String ADMIN_LOGIN = "yuliya_loboda@mail.ru";
     public static String ADMIN_PASSWORD = "000000";
 
-    public static String SITE_URL = "https://astro.club";
+    public static String SITE_URL = "https://astrolog.net.ua";
     public static String EXPERT_LOGIN = "0953814324";
     public static String EXPERT_PASSWORD = "123456";
 

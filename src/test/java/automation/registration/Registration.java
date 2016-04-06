@@ -46,8 +46,16 @@ public class Registration extends TestHelper {
 
         //нажать кнопку Зарегистрироваться
         // далее появляется попап thankyoupage, нажать кнопку Перейти в личный кабинет
+        pauseUntilDisplayed(By.xpath(".//*[@id='registration-modal-done']//a[@class='ga_btn btn btn-green btn-lg registration__choose-button']"),window);
+        window.findElement(By.xpath(".//*[@id='registration-modal-done']//a[@class='ga_btn btn btn-green btn-lg registration__choose-button']")).click();
+
         //вести имя ТестАнтон в ЛК
+        pauseUntilDisplayed(By.id("firstName"),window);
+        window.findElement(By.id("firstName")).sendKeys("ТестАнтон");
+
         //нажать Сохранить данные в ЛК
+        window.findElement(By.xpath(".//*[@id='yt0']")).click();
+        pauseUntilDisplayed(By.xpath(".//*[@id='data-save-success']//span[@class='alert__text']"),window);
     }
 
 
