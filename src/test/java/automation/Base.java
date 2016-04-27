@@ -1,18 +1,15 @@
 package automation;
 
-import org.junit.After;
-import org.openqa.selenium.By;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import java.util.logging.*;
+import org.junit.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.text.MessageFormat;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Logger;
+import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.support.ui.*;
 
 /**
  * Class contains base, low level operation.
@@ -26,6 +23,12 @@ public class Base {
     protected static int DEFAULT_WAIT_TIME_SEC = 15;
 
     protected Set<WebDriver> drivers = new HashSet();
+
+    private static Properties prop = new Properties();
+
+    static {
+        loadProperties();
+    }
 
     @After
     public void tearDown() {
@@ -155,6 +158,22 @@ public class Base {
      * @return
      */
     public WebDriver getNewWindow() {
+        switch (getSystemProperty("webdriver.type")){
+            case "chrome":
+                return getNewWindowChrome();
+            case "firefox":
+                return getNewWindowFirefox();
+            default:
+                return getNewWindowFirefox();
+        }
+    }
+
+    /**
+     * Открыть новое окно мозила
+     *
+     * @return
+     */
+    private WebDriver getNewWindowFirefox() {
         WebDriver driver = new FirefoxDriver();
         WebDriver.Options options = driver.manage();
         WebDriver.Window window = options.window();
@@ -163,5 +182,53 @@ public class Base {
         window.maximize();
         drivers.add(driver);
         return driver;
+    }
+
+        /**
+         * Открыть новое окно Chrome.
+         *
+         * @return
+         */
+    private WebDriver getNewWindowChrome() {
+        setOSDriverPath();
+
+        WebDriver driver = new ChromeDriver();
+
+        WebDriver.Options options = driver.manage();
+        WebDriver.Window window = options.window();
+
+        // Make sure all elements are visible.
+        window.maximize();
+        drivers.add(driver);
+        return driver;
+    }
+
+    private static void loadProperties() {
+        try(InputStream input = new FileInputStream("target/test-classes/config.properties")) {
+            prop.load(input);
+        } catch (FileNotFoundException e) {
+            logger.warning("config.properties is not found. " + e.getMessage());
+        } catch (IOException e) {
+            logger.warning("config.properties can not be read. " + e.getMessage());
+        }
+    }
+
+    public static String getSystemProperty(String key){
+        return prop.getProperty(key, System.getProperty(key));
+    }
+
+    /**
+     * Choose appropriate selenium web driver
+     */
+    public void setOSDriverPath(){
+        String osName = System.getProperty("os.name").toLowerCase();
+        if(osName.contains("win")){
+            System.setProperty("webdriver.chrome.driver", "target/test-classes/webdrivers/windows/chromedriver.exe");
+        } else if(osName.contains("mac")){
+            System.setProperty("webdriver.chrome.driver", "target/test-classes/webdrivers/mac/chromedriver");
+        } else {
+            System.setProperty("webdriver.chrome.driver", "target/test-classes/webdrivers/linux/chromedriver");
+        }
+
     }
 }

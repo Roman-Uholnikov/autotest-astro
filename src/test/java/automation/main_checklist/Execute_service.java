@@ -3,14 +3,9 @@ package automation.main_checklist;
 import automation.Constants;
 import automation.TestHelper;
 
-import com.sun.org.apache.bcel.internal.generic.GOTO;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Julia on 26.01.2016.
