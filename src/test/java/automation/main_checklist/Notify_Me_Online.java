@@ -19,9 +19,13 @@ public class Notify_Me_Online extends TestHelper {
         window.get(Constants.SITE_URL);
 
         //найти эксперта со статусом Нет в сети и открыть большую карточку (по кнопке Заказать консультацию)//// TODO: 11.02.2016  
+        pause(3);
 
-        if (window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).size() > 0) {
-            window.findElements(By.xpath("//*[@class='btn btn-green btn-alpha']")).get(0).click();
+        window.findElement(By.xpath("//div[@class='card__preorder']//*[@class='btn btn-green btn-alpha']")).click();
+
+
+        if (window.findElements(By.xpath("//div[@class='card__preorder']//*[@class='btn btn-green btn-alpha']")).size() > 0) {
+            window.findElements(By.xpath("//div[@class='card__preorder']//*[@class='btn btn-green btn-alpha']")).get(0).click();
         }
 
         //pauseUntilDisplayed подождать пока окно большой карты Эксперта появилось
