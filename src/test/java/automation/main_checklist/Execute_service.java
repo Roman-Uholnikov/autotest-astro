@@ -18,31 +18,18 @@ public class Execute_service extends TestHelper {
     @Test
     public void Order_service() {
         WebDriver window = getNewWindow();
-        //window.get(Constants.SITE_URL + "/service/30/yuli");
-
-
         window.get(Constants.SITE_URL + "/expert/yuli");
 
-        findElementByXPath(".//*[@data-service_name='Астрологический анализ совместимости']",window).click();
-        pause(3);
-
-        //if (window.findElements(By.xpath(".//*[@data-service_name='Астрологический анализ совместимости']")).size() > 0) {
-       //     window.findElements(By.xpath("//div[@class='card__preorder']//*[@class='btn btn-green btn-alpha']")).get(0).click();
-       // }
-
-
-
-
-                //кликнуть Заказать в карточке Услуги
-      //  findElementByXPath(".//*[@class='btn btn-green btn-lg product__order-button ga_btn']",window).click();
+                //кликнуть Заказать на карточке услуги в карточке Эксперта
+        findElementByXPath(".//*[@id='contentListView']//a [@class='btn btn-green product__order-button ga_btn']",window).click();
 
         //войти под Клиентом
         loginSiteUser(Constants.USER_LOGIN,Constants.USER_PASSWORD,window);
 
-       pauseUntilDisplayed(By.xpath(".//*[@id='expert-request-service_price']"),window);
-       // findElementById("question_1",window).sendKeys("Test1");
-        //findElementById("question_2",window).sendKeys("Test2");
-        //findElementById("question_3",window).sendKeys("Test3");
+        pauseUntilDisplayed(By.xpath(".//*[@id='expert-request-service_price']"),window);
+        findElementById("question_1",window).sendKeys("Test1");
+        findElementById("question_2",window).sendKeys("Test2");
+        findElementById("question_3",window).sendKeys("Test3");
         getFirstDisplayedWebElement(window,".//*[@id='comment']").sendKeys("Тестовая проверка заказа услуги у Эксперта Юли");
         getFirstDisplayedWebElement(window,".//*[@id='expert-request-service_form_']//fieldset//div[@class='form-group']/button[@type='submit']").click();
         pauseUntilDisplayed(By.id("btnOk"),window);
