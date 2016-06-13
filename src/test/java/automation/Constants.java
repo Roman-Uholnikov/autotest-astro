@@ -7,7 +7,7 @@ package automation;
  */
 public class Constants {
 
-    public static String SITE_ADMIN_URL = "https://admin.astrolog.net.ua/admin/default/login";
+    public static String SITE_ADMIN_URL = "https://admin.astro.club/admin/default/login";
     public static String ADMIN_LOGIN = "yuliya_loboda@mail.ru";
     public static String ADMIN_PASSWORD = "000000";
 
